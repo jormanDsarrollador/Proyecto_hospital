@@ -1,0 +1,23 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #673AB7, #3498DB);
+        /* Fallback para navegadores que no admiten gradientes */
+        background: -webkit-linear-gradient(to right, #673AB7, #3498DB);
+        background: -moz-linear-gradient(to right, #673AB7, #3498DB);
+        background: -o-linear-gradient(to right, #673AB7, #3498DB);
+        background: linear-gradient(to right, #673AB7, #3498DB);
+        /* Establece el color del texto para asegurar la legibilidad en el fondo */
+        color: #3e2c5a;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  .form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
