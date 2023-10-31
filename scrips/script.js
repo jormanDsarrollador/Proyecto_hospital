@@ -52,4 +52,29 @@ function validateForm() {
     return true;
 }
 
-//lesther agrega lo tuyo 
+//Lesther Jvier 
+
+function showSuccessMessage(message) {
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: message,
+    showConfirmButton: false,
+    timer: 2000
+  });
+}
+
+const addDoctorButton = document.getElementById('registrar-medico');
+addDoctorButton.addEventListener('click', function() {
+  if (validateForm()) {
+    const doctorName = document.getElementById('doctor-name').value;
+    const doctorSurname = document.getElementById('doctor-surname').value;
+    const doctorSpecialty = document.getElementById('doctor-specialty').value;
+    const doctorAvailability = document.getElementById('doctor-availability').value;
+    const doctor = new Doctor(doctorName, doctorSurname, doctorSpecialty, doctorAvailability);
+    data.doctors.push(doctor);
+    showSuccessMessage('Doctor registrado correctamente');
+  }
+});
+
+// Alex pone tu parte
