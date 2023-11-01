@@ -78,3 +78,26 @@ addDoctorButton.addEventListener('click', function() {
 });
 
 // Alex pone tu parte
+const addPatientButton = document.getElementById('registrar-paciente');
+addPatientButton.addEventListener('click', function() {
+  if (validateForm()) {
+    const patientName = document.getElementById('patient-name').value;
+    const patientSurname = document.getElementById('patient-surname').value;
+    const patientBirthdate = document.getElementById('patient-birthdate').value;
+    const patientPriority = document.getElementById('patient-priority').value;
+    const patient = new Patient(patientName, patientSurname, patientBirthdate, patientPriority);
+    data.patients.push(patient);
+    showSuccessMessage('Paciente registrado correctamente');
+  }
+});
+
+const submitButton = document.getElementById('solicitar-turno');
+submitButton.addEventListener('click', function() {
+  if (validateForm()) {
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const doctorId = parseInt(document.getElementById('doctor').value);
+    const patientId = parseInt(document.getElementById('patient').value);
+    addAppointment(date, time, doctorId, patientId);
+  }
+});
