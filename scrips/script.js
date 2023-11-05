@@ -60,3 +60,40 @@ function registrarTurno() {
   mostrarMensaje(mensaje);
   mostrarReservaciones();
 }
+
+function mostrarReservaciones() {
+  const reservacionesList = document.getElementById('reservations');
+  reservacionesList.innerHTML = ""; // Limpia la lista antes de mostrar las nuevas reservaciones
+
+  reservaciones.forEach(reserva => {
+      const listItem = document.createElement('li');
+      listItem.textContent = reserva;
+      reservacionesList.appendChild(listItem);
+  });
+}
+
+function mostrarMensaje(mensaje) {
+  alert(mensaje);
+}
+
+function actualizarSelects() {
+  const doctorSelect = document.getElementById('doctor-select');
+  const patientSelect = document.getElementById('patient-select');
+
+  doctorSelect.innerHTML = "";
+  patientSelect.innerHTML = "";
+
+  medicos.forEach((medico, index) => {
+      const option = document.createElement('option');
+      option.value = index;
+      option.textContent = `${medico.nombre} ${medico.apellido}`;
+      doctorSelect.appendChild(option);
+  });
+
+  pacientes.forEach((paciente, index) => {
+      const option = document.createElement('option');
+      option.value = index;
+      option.textContent = `${paciente.nombre} ${paciente.apellido}`;
+      patientSelect.appendChild(option);
+  });
+}
