@@ -1,22 +1,23 @@
-const data = {
-    doctors: [],
-    patients: [],
-    appointments: []
-};
-  
-function Doctor(name, surname, specialty, availability) {
-    this.name = name;
-    this.surname = surname;
-    this.specialty = specialty;
-    this.availability = availability;
+const medicos = [];
+const pacientes = [];
+const reservaciones = [];
+
+function Medico(nombre, apellido, edad, genero) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.edad = edad;
+    this.genero = genero;
 }
-  
-function Patient(name, surname, birthdate, priority) {
-    this.name = name;
-    this.surname = surname;
-    this.birthdate = birthdate;
-    this.priority = priority;
+
+function Paciente(nombre, apellido, edad, genero, prioridad) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.edad = edad;
+    this.genero = genero;
+    this.prioridad = prioridad;
 }
+
+//Abajo tu lineas de codigo
 
 function validateForm() {
     const doctorName = document.getElementById('doctor-name').value;

@@ -1,23 +1,61 @@
 body {
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #673AB7, #3498DB);
-        /* Fallback para navegadores que no admiten gradientes */
-        background: -webkit-linear-gradient(to right, #673AB7, #3498DB);
-        background: -moz-linear-gradient(to right, #673AB7, #3498DB);
-        background: -o-linear-gradient(to right, #673AB7, #3498DB);
-        background: linear-gradient(to right, #673AB7, #3498DB);
-        /* Establece el color del texto para asegurar la legibilidad en el fondo */
-        color: #3e2c5a;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  .form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+  font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+  color: rgb(137, 177, 196);
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.doctor, .patient, .appointment {
+  border: 1px solid dodgerblue;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+label {
+  color: dodgerblue;
+}
+
+input[type="text"],
+select,
+input[type="date"],
+input[type="time"] {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+button {
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: deepskyblue;
+}
+
+.reservations {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#reservations {
+  list-style: none;
+}
+
+#reservations li {
+  background-color: #ffb6c1;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
