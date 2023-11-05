@@ -18,87 +18,45 @@ function Paciente(nombre, apellido, edad, genero, prioridad) {
 }
 
 //Abajo tu lineas de codigo
-
-function validateForm() {
-    const doctorName = document.getElementById('doctor-name').value;
-    const patientName = document.getElementById('patient-name').value;
-    const date = document.getElementById('date').value;
-    const time = document.getElementById('time').value;
-  
-    // Verifica que los campos de nombre del médico y paciente no estén vacíos
-    if (doctorName.trim() === '' || patientName.trim() === '') {
-      // Mostrar un mensaje de error indicando que los campos son obligatorios
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Los campos de nombre del médico y paciente son obligatorios'
-      });
-      return false; // La validación falla
-    }
-  
-    // Verifica que se haya seleccionado una fecha y hora futuras
-    const selectedDateTime = new Date(date + 'T' + time);
-    const currentDateTime = new Date();
-    if (selectedDateTime <= currentDateTime) {
-      // Mostrar un mensaje de error indicando que la fecha y hora deben ser futuras
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Selecciona una fecha y hora futuras'
-      });
-      return false; // La validación falla
-    }
-  
-    // Si todos los campos cumplen las condiciones, la validación es exitosa
-    return true;
+function registrarMedico() {
+  const nombre = document.getElementById('doctor-name').value;
+  const apellido = document.getElementById('doctor-apellido').value;
+  const edad = document.getElementById('doctor-edad').value;
+  const genero = document.getElementById('doctor-gender').value;
+  const medico = new Medico(nombre, apellido, edad, genero);
+  medicos.push(medico);
+  mostrarMensaje("Médico registrado correctamente");
+  actualizarSelects();
 }
 
-//Lesther Jvier 
-
-function showSuccessMessage(message) {
-  Swal.fire({
-    position: 'top-end',
-    icon: 'success',
-    title: message,
-    showConfirmButton: false,
-    timer: 2000
-  });
+function registrarPaciente() {
+  const nombre = document.getElementById('patient-name').value;
+  const apellido = document.getElementById('patient-apellido').value;
+  const edad = document.getElementById('patient-edad').value;
+  const genero = document.getElementById('patient-gender').value;
+  const prioridad = document.querySelector('input[name="priority"]:checked').value;
+  const paciente = new Paciente(nombre, apellido, edad, genero, prioridad);
+  pacientes.push(paciente);
+  mostrarMensaje("Paciente registrado correctamente");
+  actualizarSelects();
 }
 
-const addDoctorButton = document.getElementById('registrar-medico');
-addDoctorButton.addEventListener('click', function() {
-  if (validateForm()) {
-    const doctorName = document.getElementById('doctor-name').value;
-    const doctorSurname = document.getElementById('doctor-surname').value;
-    const doctorSpecialty = document.getElementById('doctor-specialty').value;
-    const doctorAvailability = document.getElementById('doctor-availability').value;
-    const doctor = new Doctor(doctorName, doctorSurname, doctorSpecialty, doctorAvailability);
-    data.doctors.push(doctor);
-    showSuccessMessage('Doctor registrado correctamente');
-  }
-});
+function registrarTurno() {
+  const doctorIndex = document.getElementById('doctor-select').value;
+  const pacienteIndex = document.getElementById('patient-select').value;
+  const hora = document.getElementById('appointment-time').value;
+  const fecha = document.getElementById('appointment-date').value;
 
-// Alex pone tu parte
-const addPatientButton = document.getElementById('registrar-paciente');
-addPatientButton.addEventListener('click', function() {
-  if (validateForm()) {
-    const patientName = document.getElementById('patient-name').value;
-    const patientSurname = document.getElementById('patient-surname').value;
-    const patientBirthdate = document.getElementById('patient-birthdate').value;
-    const patientPriority = document.getElementById('patient-priority').value;
-    const patient = new Patient(patientName, patientSurname, patientBirthdate, patientPriority);
-    data.patients.push(patient);
-    showSuccessMessage('Paciente registrado correctamente');
+  if (!fecha || !hora) {
+      mostrarMensaje("Por favor, seleccione una fecha y hora para la reserva.");
+      return;
   }
-});
 
-const submitButton = document.getElementById('solicitar-turno');
-submitButton.addEventListener('click', function() {
-  if (validateForm()) {
-    const date = document.getElementById('date').value;
-    const time = document.getElementById('time').value;
-    const doctorId = parseInt(document.getElementById('doctor').value);
-    const patientId = parseInt(document.getElementById('patient').value);
-    addAppointment(date, time, doctorId, patientId);
-  }
-});
+  const paciente = pacientes[pacienteIndex];
+  const doctor = medicos[doctorIndex];
+
+  const mensaje = `Turno reservado correctamente para el paciente ${paciente.nombre} ${paciente.apellido} con el doctor ${doctor.nombre} ${doctor.apellido} el ${fecha} a las ${hora}. Es prioridad ?  ${paciente.prioridad}.`;
+  reservaciones.push(mensaje);
+  mostrarMensaje(mensaje);
+  mostrarReservaciones();
+}
